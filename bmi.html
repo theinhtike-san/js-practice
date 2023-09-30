@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Agdasima:wght@400;700&family=Freehand&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        html,
+        body {
+            height: 100%;
+            font-family: 'Roboto';
+            background-color: rgb(109, 118, 140);
+            margin: 0;
+        }
+
+        .card {
+            width: 350px;
+            height: auto;
+            margin: auto;
+            padding: 30px 20px;
+            border: 2px solid rgb(167, 188, 216);
+            border-radius: 10px;
+            box-sizing: border-box;
+            background-color: rgb(223, 232, 243);
+            box-shadow: -10px -10px 70px -20px rgba(51, 51, 51, 0.522), 10px 10px 40px 5px rgba(46, 46, 46, 0.564);
+
+        }
+
+        .flex-card {
+            display: flex;
+            justify-content: center;
+
+            width: 100%;
+            height: 100%;
+        }
+
+        #height,
+        #heightOption,
+        #weight,
+        #weightOption,
+        #resultBox,
+        #btn {
+            display: inline-block;
+            height: 38px;
+            padding: 8px 10px;
+            margin-bottom: 0px;
+            box-sizing: border-box;
+            border: 2px solid #3d5af1;
+            border-radius: 5px;
+            font-size: 16px;
+            background-color: transparent;
+            box-sizing: border-box;
+            outline: none;
+
+
+        }
+
+        #height,
+        #weight {
+            width: 75%;
+            border-top-right-radius: 0px;
+            border-bottom-right-radius: 0px;
+            border-right: 0px;
+        }
+
+        #height:focus {
+            border: 2px solid #2f44ab;
+            border-top-right-radius: 0px;
+            border-bottom-right-radius: 0px;
+            border-right: 0px;
+        }
+
+        #heightOption,
+        #weightOption {
+            width: 25%;
+            padding: 0px 10px;
+            border-top-left-radius: 0px;
+            border-bottom-left-radius: 0px;
+
+        }
+
+        h1 {
+            margin-top: 0;
+            text-align: center;
+            color: #3d5af1;
+        }
+
+        .height-label,
+        .weight-label,
+        .result-label {
+            display: block;
+            font-size: large;
+            margin-bottom: 5px;
+        }
+
+        #alert,
+        #weightAlert {
+            display: inline-block;
+            color: rgb(202, 44, 44);
+            margin: 1px 1px;
+            font-size: 14px;
+            padding: 0;
+            height: 10px;
+        }
+
+        #resultBox {
+            width: 100%;
+            height: 220px;
+        }
+
+        #result {
+            padding: 10px 10px;
+            padding-bottom: 0px;
+            width: 100%;
+            box-sizing: border-box;
+
+
+        }
+
+        #btn {
+            display: block;
+            width: 70%;
+            margin: auto;
+            margin-top: 20px;
+            border-radius: 38px;
+            margin-bottom: 20px;
+            text-decoration: none;
+            text-align: center;
+            color: black;
+            font-size: large;
+            background-color: #4e66e3;
+            color: white;
+            font-weight: bolder;
+        }
+
+        .border-b {
+            width: 100%;
+            border-bottom: 3px solid #374796;
+
+
+        }
+
+        .bmi-up-box {
+            width: fit-content;
+            display: flex;
+            margin: auto;
+            justify-items: center;
+            gap: 10px;
+            margin-bottom: 0;
+            height: fit-content;
+        }
+
+        .bmi-result {
+            font-size: 55px;
+            margin-bottom: 0;
+        }
+
+        .bmi-unit {
+            padding-top: 8px;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .condition-normal {
+            font-size: medium;
+            color: rgb(4, 204, 71);
+            font-weight: 800;
+        }
+
+        .condition-under {
+            font-size: medium;
+            color: #1e699e;
+            font-weight: 800;
+        }
+
+        .condition-over {
+            font-size: medium;
+            color: rgb(192, 29, 29);
+            font-weight: 800;
+        }
+
+
+        .information-box {
+            text-align: center;
+            color: rgb(70, 68, 68);
+        }
+
+        .information {
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .flex-box {
+            display: flex;
+            width: 100%;
+            align-items: center;
+        }
+
+        .flex-box div {
+            width: 33%;
+            text-align: center;
+            height: 30px;
+
+        }
+
+        .flex-box div h5 {
+            margin: 0;
+            line-height: 30px;
+        }
+
+        .under {
+            color: #1e699e;
+            border-bottom: 3px solid #1e699e;
+        }
+
+        .normal {
+            color: rgb(1, 119, 40);
+            border-bottom: 3px solid rgb(40, 175, 85);
+        }
+
+        .over {
+            color: rgb(192, 29, 29);
+            border-bottom: 3px solid rgb(192, 29, 29);
+        }
+
+        .flex-box h3 {
+            width: 25%;
+            margin-top: 5px;
+        }
+
+        .start {
+            text-align: start;
+        }
+
+        .center {
+            text-align: center;
+
+        }
+
+        .end {
+            text-align: end;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="flex-card">
+        <div class="card">
+            <h1>BMI Calculator</h1>
+            <div class="height-input">
+                <label for="height" class="height-label">Enter your height</label>
+
+                <input type="number" id="height"><select name="height" id="heightOption">
+                    <option value="cm">cm</option>
+                    <option value="in">in.</option>
+                    <option value="ft">ft</option>
+                </select>
+                <span id="alert"></span>
+            </div>
+
+            <div class="weight-input">
+                <label for="wdight" class="weight-label">Enter your weight</label>
+
+                <input type="number" id="weight"><select name="weight" id="weightOption">
+                    <option value="kg">kg</option>
+                    <option value="lb">lb</option>
+
+                </select>
+                <span id="weightAlert"></span>
+
+            </div>
+
+            <span class="result-label">BMI</span>
+            <div id="resultBox">
+                <div id="result">
+                    <div class="border-b">
+                        <div class="bmi-up-box">
+                            <h1 class="bmi-result" id="bmiResult">0.00</h1>
+                            <div>
+                                <div class="bmi-unit">BMI</div>
+                                <span class="condition-normal" id="condition"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="information-box">
+                        <h4 class="information">Information</h4>
+                        <div>
+                            <div class="flex-box">
+                                <div class="under">
+                                    <h5>Underweight</h5>
+                                </div>
+                                <div class="normal">
+                                    <h5>Normal</h5>
+                                </div>
+                                <div class="over">
+                                    <h5>Overweight</h5>
+                                </div>
+                            </div>
+                            <div class="flex-box">
+                                <h3 class="start">16.0</h3>
+                                <h3 class="start">18.5</h3>
+                                <h3 class="end">25.0</h3>
+                                <h3 class="end">40.0</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <a href="#" id="btn">Calculate</a>
+
+        </div>
+    </div>
+
+    <script>
+        const height = document.getElementById("height");
+        const weight = document.getElementById("weight");
+        const heightOption = document.getElementById("heightOption");
+        const weightOption = document.getElementById("weightOption");
+        const alert = document.getElementById("alert");
+        const weightAlert = document.getElementById("weightAlert");
+        const resultBox = document.getElementById("resultBox");
+        const bmiResult = document.getElementById("bmiResult");
+        const condition = document.getElementById("condition");
+
+        const btn = document.getElementById("btn");
+
+
+        btn.onclick = () => {
+            const heightInput = height.value;
+            const weightInput = weight.value;
+            const hOption = heightOption.value;
+            const wOption = weightOption.value;
+
+            if (heightInput != "") {
+                if (hOption == "cm" && wOption == "kg") {
+                    const result = (weightInput) / (((heightInput / 100) ** 2));
+                    bmiResult.innerHTML = result.toFixed(2);
+                    if (result <= 18.4) {
+
+                        condition.innerHTML = `<span class="condition-under">underweight</span>`;
+                    } else if (result >= 18.5 && result <= 25) {
+                        condition.innerHTML = `<span class="condition-normal">normal</span>`;
+                    } else {
+                        condition.innerHTML = `<span class="condition-over">overweight</span>`;
+                    }
+
+
+                } else if (hOption == "cm" && wOption == "lb") {
+                    const result2 = ((weightInput) / (((heightInput / 2.54) ** 2)) * 703);
+                    console.log(result2);
+                    bmiResult.innerHTML = result2.toFixed(2);
+                    if (result2 <= 18.4) {
+
+                        condition.innerHTML = `<span class="condition-under">underweight</span>`;
+                    } else if (result2 >= 18.5 && result2 <= 25) {
+                        condition.innerHTML = `<span class="condition-normal">normal</span>`;
+                    } else {
+                        condition.innerHTML = `<span class="condition-over">overweight</span>`;
+                    }
+                } else if (hOption == "in" && wOption == "lb") {
+                    const result3 = ((weightInput) / ((heightInput) ** 2)) * 703;
+                    bmiResult.innerHTML = result3.toFixed(2);
+
+                    if (result3 <= 18.4) {
+
+                        condition.innerHTML = `<span class="condition-under">underweight</span>`;
+                    } else if (result3 >= 18.5 && result3 <= 25) {
+                        condition.innerHTML = `<span class="condition-normal">normal</span>`;
+                    } else {
+                        condition.innerHTML = `<span class="condition-over">overweight</span>`;
+                    }
+
+                } else if (hOption == "in" && wOption == "kg") {
+                    const result4 = (((weightInput) / ((heightInput) ** 2)) * 703) * 2.204;
+                    bmiResult.innerHTML = result4.toFixed(2);
+                    if (result4 <= 18.4) {
+
+                        condition.innerHTML = `<span class="condition-under">underweight</span>`;
+                    } else if (result4 >= 18.5 && result4 <= 25) {
+                        condition.innerHTML = `<span class="condition-normal">normal</span>`;
+                    } else {
+                        condition.innerHTML = `<span class="condition-over">overweight</span>`;
+                    }
+                } else if (hOption == "ft" && wOption == "lb") {
+                    const result5 = (((weightInput) / ((heightInput) * 12) ** 2)) * 703 ;
+                    bmiResult.innerHTML = result5.toFixed(2);
+                    if (result5 <= 18.4) {
+
+                        condition.innerHTML = `<span class="condition-under">underweight</span>`;
+                    } else if (result5 >= 18.5 && result5 <= 25) {
+                        condition.innerHTML = `<span class="condition-normal">normal</span>`;
+                    } else {
+                        condition.innerHTML = `<span class="condition-over">overweight</span>`;
+                    }
+                } else {
+                    const result6 = (((weightInput) / ((heightInput*12) ** 2)) * 703) * 2.204;
+                    bmiResult.innerHTML = result6.toFixed(2);
+                    if (result6 <= 18.4) {
+
+                        condition.innerHTML = `<span class="condition-under">underweight</span>`;
+                    } else if (result6 >= 18.5 && result6 <= 25) {
+                        condition.innerHTML = `<span class="condition-normal">normal</span>`;
+                    } else {
+                        condition.innerHTML = `<span class="condition-over">overweight</span>`;
+                    }
+                };
+            } else {
+                height.style.borderColor = "rgb(202, 44, 44)";
+                heightOption.style.borderColor = "rgb(202, 44, 44)";
+                weight.style.borderColor = "rgb(202, 44, 44)";
+                weightOption.style.borderColor = "rgb(202, 44, 44)";
+                alert.innerText = "* Fill your height";
+                weightAlert.innerText = "* Fill Your weight";
+            }
+
+
+        }
+    </script>
+</body>
+
+</html>

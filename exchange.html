@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>exchange</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Agdasima:wght@400;700&family=Freehand&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        html,
+        body {
+            height: 100%;
+            font-family: 'Roboto';
+            background-color: rgb(109, 118, 140);
+            margin: 0;
+        }
+
+        
+
+        .card {
+            width: 320px;
+            height: auto;
+            margin: auto;
+            padding: 30px 20px;
+            border: 2px solid rgb(167, 188, 216);
+            border-radius: 10px;
+            box-sizing: border-box;
+            background-color: rgb(223, 232, 243);
+            box-shadow: -10px -10px 70px -20px rgba(51, 51, 51, 0.522), 10px 10px 40px 5px rgba(46, 46, 46, 0.564);
+
+
+        }
+
+        .flex-card {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+        }
+
+
+        h1 {
+            margin-top: 0;
+            text-align: center;
+            color: #3d5af1;
+        }
+
+        .amount-label {
+            display: block;
+            font-size: large;
+            margin-bottom: 5px;
+        }
+
+
+        
+        #alert {
+            display: inline-block;
+            color: rgb(202, 44, 44);
+            margin: 1px 1px;
+            font-size: 14px;
+            padding: 0;
+            height: 10px;
+        }
+
+        #amountInput {
+            display: block;
+            width: 100%;
+            padding: 8px 10px;
+            box-sizing: border-box;
+            border: 2px solid #3d5af1;
+            border-radius: 5px;
+            font-size: 16px;
+            background-color: transparent;
+        }
+
+        .output-field,
+        .history-field,
+        #btn {
+            display: block;
+            width: 100%;
+            padding: 8px 10px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+            border: 2px solid #3d5af1;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .result-label,
+        .history-label {
+            display: block;
+            font-size: large;
+            margin-bottom: 5px;
+        }
+
+        .output-field {
+            height: 38px;
+
+
+        }
+        
+
+        .history-field {
+            height: 100px;
+            overflow: scroll;
+
+        }
+
+        .history-field::-webkit-scrollbar {
+            display: none;
+            
+
+
+        }
+
+        #history {
+            margin: 0;
+            padding: 5px 0;
+        }
+
+        #history li {
+            margin-bottom: 3px;
+            list-style-type: none;
+        }
+
+        .grid {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 34% 32% 34%;
+            justify-items: center;
+            align-items: end;
+            margin: auto;
+            margin-bottom: 20px;
+
+        }
+
+        #fromCurrencyName,
+
+        #toCurrencyName {
+            font-size: large;
+            height: 38px;
+            border: 2px solid #3d5af1;
+            border-radius: 5px;
+            background-color: transparent;
+        }
+
+
+        .currency-grid {
+            display: grid;
+            background-color: transparent;
+
+        }
+
+        .currency-label {
+            font-size: large;
+            margin-bottom: 5px;
+        }
+
+
+        #btn {
+            width: 70%;
+            margin: auto;
+            border-radius: 38px;
+            margin-bottom: 20px;
+            text-decoration: none;
+            text-align: center;
+            color: black;
+            font-size: large;
+            background-color: #4e66e3;
+            color: white;
+            font-weight: bolder;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="flex-card">
+        <div class="card">
+            <h1>Currency Exchange</h1>
+
+            <div class="input-field">
+                <label for="amountInput" class="amount-label">Enter Amount</label>
+                <input type="number" name="amountInput" id="amountInput">
+                <span id="alert"></span>
+            </div>
+
+
+
+            <span class="result-label">Result</span>
+            <div class="output-field">
+                <span id="resultOutput"></span>
+            </div>
+
+            <span class="history-label">History</span>
+            <div class="history-field">
+                <ul id="history"></ul>
+            </div>
+
+
+            <div class="grid">
+                <div class="currency-grid">
+                    <label class="currency-label" for="fromCurrency">From</label>
+                    <select name="fromCurrency" id="fromCurrencyName">
+                        <option value="USD">USD</option>
+                        <option value="SGD">SGD</option>
+                        <option value="EUR">EUR</option>
+                        <option value="MMK">MMK</option>
+                        <option value="USD">USD</option>
+                        <option value="USD">USD</option>
+                        <option value="USD">USD</option>
+                        <option value="USD">USD</option>
+                        <option value="USD">USD</option>
+                        <option value="USD">USD</option>
+                        <option value="USD">USD</option>
+                    </select>
+                </div>
+                <div>
+                    <a href="#" id="convert">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                            class="bi bi-arrow-left-right" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5zm14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5z" />
+                        </svg>
+                    </a>
+                </div>
+                <div class="currency-grid">
+                    <label class="currency-label" for="toCurrency">To</label>
+                    <select name="toCurrency" id="toCurrencyName">
+                        <option value="MMK">MMK</option>
+                        <option value="USD">USD</option>
+                        <option value="SGD">SGD</option>
+                        <option value="EUR">EUR</option>
+                        <option value="USD">USD</option>
+                        <option value="USD">USD</option>
+                        <option value="USD">USD</option>
+                        <option value="USD">USD</option>
+                        <option value="USD">USD</option>
+                        <option value="USD">USD</option>
+                        <option value="USD">USD</option>
+                    </select>
+                </div>
+
+
+            </div>
+
+
+            <a href="#" id="btn">Exchange</a>
+
+
+        </div>
+    </div>
+
+    <script>
+        const rates = {
+            USD: 3400,
+            EUR: 3617,
+            SGD: 2481,
+            MMK: 1,
+        }
+        const currenciesUnit = {
+            "USD": "United State Dollar",
+            "EUR": "Euro",
+            "SGD": "Singapore Dollar",
+            "GBP": "Pound Sterling",
+            "CHF": "Swiss Franc",
+            "JPY": "Japanese Yen",
+            "AUD": "Australian Dollar",
+            "BDT": "Bangladesh Taka",
+            "BND": "Brunei Dollar",
+            "KHR": "Cambodian Riel",
+            "CAD": "Canadian Dollar",
+            "CNY": "Chinese Yuan",
+            "HKD": "Hong Kong Dollar",
+            "INR": "Indian Rupee",
+            "IDR": "Indonesian Rupiah",
+            "KRW": "Korean Won",
+            "LAK": "Lao Kip",
+            "MYR": "Malaysian Ringgit",
+            "NZD": "New Zealand Dollar",
+            "PKR": "Pakistani Rupee",
+            "PHP": "Philippines Peso",
+            "LKR": "Sri Lankan Rupee",
+            "THB": "Thai Baht",
+            "VND": "Vietnamese Dong",
+            "BRL": "Brazilian Real",
+            "CZK": "Czech Koruna",
+            "DKK": "Danish Krone",
+            "EGP": "Egyptian Pound",
+            "ILS": "Israeli Shekel",
+            "KES": "Kenya Shilling",
+            "KWD": "Kuwaiti Dinar",
+            "NPR": "Nepalese Rupee",
+            "NOK": "Norwegian Kroner",
+            "RUB": "Russian Rouble",
+            "SAR": "Saudi Arabian Riyal",
+            "RSD": "Serbian Dinar",
+            "ZAR": "South Africa Rand",
+            "SEK": "Swedish Krona",
+            "MMK": "Myanmar Kyat"
+        }
+
+        const amountInput = document.getElementById("amountInput");
+        const alert = document.getElementById("alert");
+        const resultOutput = document.getElementById("resultOutput");
+        const historyOutput = document.getElementById("history");
+        const fromCurrencyName = document.getElementById("fromCurrencyName");
+        const toCurrencyName = document.getElementById("toCurrencyName");
+        const btn = document.getElementById("btn");
+        const convert = document.getElementById("convert");
+
+        btn.onclick = () => {
+            const from = fromCurrencyName.value;
+            const to = toCurrencyName.value;
+            const input = amountInput.valueAsNumber;
+
+            const rateFrom = rates[from];
+            const rateTo = rates[to];
+            if (amountInput.value !== "") {
+
+                const output = rateFrom / rateTo * input
+                resultOutput.innerText = `${output.toFixed(2)} ${to}`;
+                historyOutput.innerHTML += `<li>${amountInput.value} ${from}  =  ${output.toFixed(2)} ${to}</li>`;
+                alert.innerText = "";
+
+            } else {
+                alert.innerText = "* Please fill a number";
+                amountInput.style.borderColor = "rgb(202, 44, 44)";
+
+            }
+        };
+        convert.onclick = () => {
+            const from = fromCurrencyName.value;
+            const to = toCurrencyName.value;
+
+            fromCurrencyName.value = to;
+            toCurrencyName.value = from;
+
+        }
+    </script>
+
+</body>
+
+</html>
