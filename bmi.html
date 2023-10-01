@@ -344,7 +344,9 @@
             const hOption = heightOption.value;
             const wOption = weightOption.value;
 
-            if (heightInput != "") {
+
+
+            if (heightInput != "" && weightInput != "") {
                 if (hOption == "cm" && wOption == "kg") {
                     const result = (weightInput) / (((heightInput / 100) ** 2));
                     bmiResult.innerHTML = result.toFixed(2);
@@ -370,6 +372,7 @@
                     } else {
                         condition.innerHTML = `<span class="condition-over">overweight</span>`;
                     }
+
                 } else if (hOption == "in" && wOption == "lb") {
                     const result3 = ((weightInput) / ((heightInput) ** 2)) * 703;
                     bmiResult.innerHTML = result3.toFixed(2);
@@ -395,7 +398,7 @@
                         condition.innerHTML = `<span class="condition-over">overweight</span>`;
                     }
                 } else if (hOption == "ft" && wOption == "lb") {
-                    const result5 = (((weightInput) / ((heightInput) * 12) ** 2)) * 703 ;
+                    const result5 = (((weightInput) / ((heightInput) * 12) ** 2)) * 703;
                     bmiResult.innerHTML = result5.toFixed(2);
                     if (result5 <= 18.4) {
 
@@ -406,7 +409,7 @@
                         condition.innerHTML = `<span class="condition-over">overweight</span>`;
                     }
                 } else {
-                    const result6 = (((weightInput) / ((heightInput*12) ** 2)) * 703) * 2.204;
+                    const result6 = (((weightInput) / ((heightInput * 12) ** 2)) * 703) * 2.204;
                     bmiResult.innerHTML = result6.toFixed(2);
                     if (result6 <= 18.4) {
 
@@ -416,17 +419,43 @@
                     } else {
                         condition.innerHTML = `<span class="condition-over">overweight</span>`;
                     }
+
                 };
+                height.style.borderColor = "#3d5af1";
+                heightOption.style.borderColor = "#3d5af1";
+                alert.innerText = "";
+
+                weight.style.borderColor = "#3d5af1";
+                weightOption.style.borderColor = "#3d5af1";
+                weightAlert.innerText = "";
+
             } else {
-                height.style.borderColor = "rgb(202, 44, 44)";
-                heightOption.style.borderColor = "rgb(202, 44, 44)";
-                weight.style.borderColor = "rgb(202, 44, 44)";
-                weightOption.style.borderColor = "rgb(202, 44, 44)";
-                alert.innerText = "* Fill your height";
-                weightAlert.innerText = "* Fill Your weight";
-            }
 
-
+                switch (heightInput) {
+                    case "":
+                        height.style.borderColor = "rgb(202, 44, 44)";
+                        heightOption.style.borderColor = "rgb(202, 44, 44)";
+                        alert.innerText = "* Fill your height";
+                        break;
+                    case !"":
+                        height.style.borderColor = "#3d5af1";
+                        heightOption.style.borderColor = "#3d5af1";
+                        alert.innerText = "";
+                        break;
+                }
+                switch (weightInput) {
+                    case "":
+                        weight.style.borderColor = "rgb(202, 44, 44)";
+                        weightOption.style.borderColor = "rgb(202, 44, 44)";
+                        weightAlert.innerText = "* Fill Your weight";
+                        break;
+                    case !"":
+                        weight.style.borderColor = "#3d5af1";
+                        weightOption.style.borderColor = "#3d5af1";
+                        weightAlert.innerText = "";
+                        break;
+                }
+            };
         }
     </script>
 </body>

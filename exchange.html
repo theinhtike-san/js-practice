@@ -103,15 +103,12 @@
 
         .output-field {
             height: 38px;
-
-
         }
         
 
         .history-field {
             height: 100px;
             overflow: scroll;
-
         }
 
         .history-field::-webkit-scrollbar {
@@ -330,12 +327,13 @@
                 resultOutput.innerText = `${output.toFixed(2)} ${to}`;
                 historyOutput.innerHTML += `<li>${amountInput.value} ${from}  =  ${output.toFixed(2)} ${to}</li>`;
                 alert.innerText = "";
+                amountInput.style.borderColor = "#3d5af1";
 
             } else {
                 alert.innerText = "* Please fill a number";
                 amountInput.style.borderColor = "rgb(202, 44, 44)";
 
-            }
+            };
         };
         convert.onclick = () => {
             const from = fromCurrencyName.value;
@@ -343,8 +341,7 @@
 
             fromCurrencyName.value = to;
             toCurrencyName.value = from;
-
-        }
+        };
     </script>
 
 </body>
