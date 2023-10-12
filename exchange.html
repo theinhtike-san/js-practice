@@ -23,7 +23,7 @@
             margin: 0;
         }
 
-        
+
 
         .card {
             width: 320px;
@@ -60,7 +60,7 @@
         }
 
 
-        
+
         #alert {
             display: inline-block;
             color: rgb(202, 44, 44);
@@ -104,7 +104,7 @@
         .output-field {
             height: 38px;
         }
-        
+
 
         .history-field {
             height: 100px;
@@ -113,7 +113,7 @@
 
         .history-field::-webkit-scrollbar {
             display: none;
-            
+
 
 
         }
@@ -185,11 +185,12 @@
             <h1>Currency Exchange</h1>
 
             <div class="input-field">
-                <label for="amountInput" class="amount-label">Enter Amount</label>
-                <input type="number" name="amountInput" id="amountInput">
-                <span id="alert"></span>
-            </div>
 
+                <label for="amountInput" class="amount-label">Enter Amount</label>
+                <input type="number" name="amountInput" id="amountInput" autofocus>
+                <span id="alert"></span>
+
+            </div>
 
 
             <span class="result-label">Result</span>
@@ -246,11 +247,10 @@
                     </select>
                 </div>
 
-
             </div>
+            <button type="submit" id="btn">Exchange</button>
 
 
-            <a href="#" id="btn">Exchange</a>
 
 
         </div>
@@ -314,13 +314,15 @@
         const btn = document.getElementById("btn");
         const convert = document.getElementById("convert");
 
-        btn.onclick = () => {
+        const form = document.querySelector("#form");
+
+        const btnHandler = () => {
             const from = fromCurrencyName.value;
             const to = toCurrencyName.value;
             const input = amountInput.valueAsNumber;
-
             const rateFrom = rates[from];
             const rateTo = rates[to];
+
             if (amountInput.value !== "") {
 
                 const output = rateFrom / rateTo * input
@@ -334,7 +336,16 @@
                 amountInput.style.borderColor = "rgb(202, 44, 44)";
 
             };
-        };
+
+        }
+
+        btn.addEventListener("click",(btnHandler));
+        
+        amountInput.addEventListener("keyup", (event) => {
+            if (event.key === "Enter") {
+                btnHandler();
+            }
+        })
         convert.onclick = () => {
             const from = fromCurrencyName.value;
             const to = toCurrencyName.value;

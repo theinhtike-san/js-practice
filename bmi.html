@@ -261,7 +261,7 @@
             <div class="height-input">
                 <label for="height" class="height-label">Enter your height</label>
 
-                <input type="number" id="height"><select name="height" id="heightOption">
+                <input type="number" id="height" autofocus><select name="height" id="heightOption">
                     <option value="cm">cm</option>
                     <option value="in">in.</option>
                     <option value="ft">ft</option>
@@ -338,7 +338,18 @@
         const btn = document.getElementById("btn");
 
 
-        btn.onclick = () => {
+        height.addEventListener("keyup",(event)=>{
+            if(event.key == "Enter" ){
+                weight.focus();
+            }
+        })
+
+        weight.addEventListener("keyup",(event)=>{
+            if(event.key == "Enter"){
+                exchange();
+            }
+        })
+       const exchange = btn.onclick = () => {
             const heightInput = height.value;
             const weightInput = weight.value;
             const hOption = heightOption.value;
@@ -457,6 +468,7 @@
                 }
             };
         }
+    
     </script>
 </body>
 
